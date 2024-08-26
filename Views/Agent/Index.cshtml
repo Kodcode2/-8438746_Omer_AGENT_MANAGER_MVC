@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Agent_Management_Client.Models.Agent>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AgentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nickname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.photoUrl)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.locationY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.locationX)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount_of_eliminations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AgentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nickname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.photoUrl)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locationY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.locationX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount_of_eliminations)
+            </td>
+            <td>
+               
+                @Html.ActionLink("Mission", "Details", new {  id=item.AgentId }) 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
