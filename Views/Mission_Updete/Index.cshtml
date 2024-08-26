@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Agent_Management_Client.ViewModels.modleMission>
+
+
+
+@{
+    ViewBag.Title = "Mission List";
+}
+
+<h2>Mission List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mission ID</th>
+            <th>Agent Nickname</th>
+            <th>Agent PositionX</th>
+            <th>Agent PositionY</th>
+            <th>Target Name</th>
+            <th>Target Candidate</th>
+            <th>Target PositionX</th>
+            <th>Target PositionY</th>
+            <th>Time Remaining</th>
+            <th>Mission Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.mission.id</td>
+                <td>@item.agent.nickname</td>
+                <td>@item.agent.locationX</td>
+                <td>@item.agent.locationY</td>
+                <td>@item.target.name</td>
+                <td>@item.target.position</td>
+                <td>@item.target.locationX</td>
+                <td>@item.target.locationY</td>
+                <td>@item.mission.Timeremaining</td>
+                <td>@item.mission.status</td>
+                <td>
+                    
+                    @Html.ActionLink("Edit", "Edit", new { id = item.mission.id })
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

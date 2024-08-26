@@ -19,12 +19,11 @@ namespace Agent_Management_Client.Controllers
         // GET: Mission_UpdeteController
         public async Task<IActionResult> Index()
         {
+            var res = await _httpClient.GetStringAsync("http://localhost:5120/missions/get_Missions");
             
-            var res = await _httpClient.GetFromJsonAsync <modleMission> ("http://localhost:5120/missions/get_Missions");
-            
-            //var respons = JsonConvert.DeserializeObject<List<modleMission>>(res);
-           
-            return View(res);
+            List<modleMission> respons = JsonConvert.DeserializeObject<List<modleMission>>(res);            
+
+            return View(respons);
         }
 
         // GET: Mission_UpdeteController/Details/5
@@ -55,9 +54,14 @@ namespace Agent_Management_Client.Controllers
         }
 
         // GET: Mission_UpdeteController/Edit/5
-        public ActionResult Edit(int id)
+       
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var bodycontent = new { token = "updete", status = "assigned" };
+            var content = JsonContent.Create(bodycontent);
+            await _httpClient.PutAsync($"http://localhost:5120/missions/{id}", content);
+
+            return RedirectToAction("Index");
         }
 
         // POST: Mission_UpdeteController/Edit/5
