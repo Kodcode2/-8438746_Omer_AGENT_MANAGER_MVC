@@ -19,7 +19,6 @@ namespace Agent_Management_Client.Controllers
             var res = await _httpClient.GetStringAsync("http://localhost:5120/Targets");
             var respons = JsonConvert.DeserializeObject<List<Target>>(res);
             return View(respons);
-
         }
 
         // GET: TargetController/Details/5
